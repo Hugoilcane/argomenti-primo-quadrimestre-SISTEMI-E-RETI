@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Comunicazione nel Web con HTTP</title>
+    <link rel="stylesheet" href="style_pagine.css">
+    <style>
+        /* Integrazioni specifiche per tabelle tecniche */
+        .uri-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: rgba(30, 41, 59, 0.4);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .uri-table th, .uri-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .uri-table th {
+            background: rgba(35, 166, 213, 0.2);
+            color: #23a6d5;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+        }
+        .code-block {
+            background: #000;
+            color: #23d5ab;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            margin: 10px 0;
+            border-left: 4px solid #23d5ab;
+        }
+        .method-badge {
+            background: #e73c7e;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar"></div>
+    <nav style="display: flex; justify-content: space-between;">
+        <a href="index.html" class="back-link">← Dashboard</a>
+        <a href="pagina2.html" class="back-link">← Argomento Precedente</a>
+
+    </nav>
+
+    <header class="hero-section">
+        <div class="badge">3° Argomento</div>
+        <h1>Comunicazione nel Web con HTTP</h1>
+        <p style="color: #94a3b8; max-width: 800px; margin: 20px auto;">
+            In questa lezione esploreremo il modello Client/Server, la struttura degli URI e il funzionamento profondo del protocollo HTTP/1.1.
+        </p>
+    </header>
+
+    <main>
+        <section class="content-block">
+            <div class="text-content">
+                <div class="icon-box">🌐</div>
+                <h2>Il Modello Client/Server</h2>
+                <p>Il Web si basa su un'interazione tra due entità distinte:</p>
+                <div class="fallacy-item">
+                    <strong>Client (Elemento Attivo):</strong> I Web Browser (Chrome, Firefox) che utilizzano l'URL per identificare risorse e inviano richieste HTTP.
+                </div>
+                <div class="fallacy-item" style="border-left-color: #23a6d5; margin-top: 10px;">
+                    <strong>Server (Elemento Passivo):</strong> I Web Server (Apache, Nginx) che rimangono in ascolto sulla porta 80/443 e forniscono le risorse richieste.
+                </div>
+            </div>
+            <div class="image-box">
+                
+            </div>
+        </section>
+
+        <section class="content-block full-width">
+            <h2>Identificare le Risorse: URI, URL e URN</h2>
+            <p>Ogni risorsa nel Web (file, immagine, query) è identificata in modo univoco.</p>
+            <div class="comparison-container" style="display: flex; gap: 20px; margin-top: 30px;">
+                <div class="tech-card" style="flex: 1;">
+                    <h4 style="color: #23a6d5;">URI (Identifier)</h4>
+                    <p style="font-size: 0.85rem;">Il set generico di nomi o indirizzi (URL + URN).</p>
+                </div>
+                <div class="tech-card" style="flex: 1;">
+                    <h4 style="color: #23d5ab;">URL (Locator)</h4>
+                    <p style="font-size: 0.85rem;">Specifica come raggiungere la risorsa (protocollo + host + path).</p>
+                </div>
+                <div class="tech-card" style="flex: 1;">
+                    <h4 style="color: #e73c7e;">URN (Name)</h4>
+                    <p style="font-size: 0.85rem;">Nome persistente anche se la risorsa cambia posizione.</p>
+                </div>
+            </div>
+
+            
+
+            <table class="uri-table">
+                <thead>
+                    <tr><th>Componente</th><th>Significato</th><th>Obbligatorio</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>Protocollo</strong></td><td>HTTP, HTTPS, FTP, ecc.</td><td>Sì</td></tr>
+                    <tr><td><strong>Host</strong></td><td>Nome simbolico o IP del server.</td><td>Sì</td></tr>
+                    <tr><td><strong>Porta</strong></td><td>Default 80 per HTTP, 443 per HTTPS.</td><td>No</td></tr>
+                    <tr><td><strong>Path/File</strong></td><td>Percorso gerarchico nel file system.</td><td>Sì</td></tr>
+                    <tr><td><strong>Query</strong></td><td>Informazioni addizionali (es. ?id=10).</td><td>No</td></tr>
+                    <tr><td><strong>Fragment</strong></td><td>Punto preciso nella risorsa (es. #fine).</td><td>No</td></tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="content-block">
+            <div class="text-content">
+                <h2>Caratteristiche del Protocollo</h2>
+                <p><strong>HTTP (HyperText Transfer Protocol)</strong> è un protocollo di livello <strong>Application</strong> che opera sopra il TCP/IP.</p>
+                <ul style="font-size: 0.9rem; color: #94a3b8;">
+                    <li><strong>Stateless:</strong> Non mantiene memoria dello stato tra diverse richieste.</li>
+                    <li><strong>Versione 1.0:</strong> Ogni risorsa richiede una nuova connessione TCP (lento).</li>
+                    <li><strong>Versione 1.1:</strong> Introduce la <strong>Connessione Permanente</strong> (Keep-Alive) e il <strong>Pipelining</strong>.</li>
+                </ul>
+            </div>
+            <div class="tech-card">
+                <h4 style="color: #ee7752;">HTTP Pipelining</h4>
+                <p style="font-size: 0.85rem;">Il client invia molteplici richieste senza attendere la risposta immediata, ottimizzando i tempi di latenza della rete.</p>
+                
+            </div>
+        </section>
+
+        <section class="content-block full-width">
+            <h2>Struttura del Messaggio HTTP</h2>
+            <div class="tech-card" style="text-align: left;">
+                <p>Sia la Richiesta che la Risposta condividono una struttura comune:</p>
+                <ol style="color: #cbd5e1; font-size: 0.9rem;">
+                    <li><strong>Riga Iniziale</strong> (Request Line o Status Line)</li>
+                    <li><strong>Header Lines</strong> (Metadati del messaggio)</li>
+                    <li><strong>Riga Vuota</strong> (CRLF - Fondamentale per separare i metadati dai dati)</li>
+                    <li><strong>Message Body</strong> (I dati effettivi, opzionale)</li>
+                </ol>
+                
+                <div class="code-block">
+                    <span style="color: #e73c7e;">GET</span> /informatica/home.html HTTP/1.1<br>
+                    Host: www.istitutovolta.edu<br>
+                    User-Agent: Mozilla/5.0<br>
+                    Accept: text/html<br>
+                    <br>
+                    &lt;!-- Riga vuota CRLF --&gt;
+                </div>
+            </div>
+        </section>
+
+        <section class="content-block">
+            <div class="text-content">
+                <h2>Metodi e Risposte</h2>
+                <p>Il client specifica l'azione tramite un <strong>Metodo</strong>:</p>
+                <ul style="font-size: 0.9rem;">
+                    <li><span class="method-badge">GET</span> Richiede una risorsa (dati nell'URL).</li>
+                    <li><span class="method-badge" style="background: #23d5ab;">POST</span> Invia dati al server (dati nel Body).</li>
+                    <li><span class="method-badge" style="background: #23a6d5;">HEAD</span> Richiede solo gli Header (per test).</li>
+                </ul>
+            </div>
+            <div class="text-content">
+                <h2 style="color: #23a6d5;">La Status Line (Response)</h2>
+                <p>Il server risponde con un codice numerico:</p>
+                <div class="fallacies-grid">
+                    <div class="fallacy-item" style="border-left-color: #23d5ab;"><strong>200 OK:</strong> Successo.</div>
+                    <div class="fallacy-item" style="border-left-color: #ee7752;"><strong>404 Not Found:</strong> Risorsa non trovata.</div>
+                    <div class="fallacy-item" style="border-left-color: #e73c7e;"><strong>500 Error:</strong> Errore del server side.</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-block full-width">
+            <div class="tech-card" style="background: rgba(35, 166, 213, 0.05); border-color: #23a6d5;">
+                <h2>Header e Message Body (JSON)</h2>
+                <p style="text-align: left; font-size: 0.9rem;">
+                    Gli <strong>Header</strong> definiscono come il messaggio deve essere interpretato. Ad esempio, <code>Content-Type: application/json</code> indica che il corpo del messaggio contiene dati strutturati in formato JSON, standard de-facto per le moderne Web API.
+                </p>
+                <div class="code-block" style="text-align: left;">
+                    HTTP/1.1 200 OK<br>
+                    Content-Type: application/json; charset=utf-8<br>
+                    <br>
+                    {<br>
+                    &nbsp;&nbsp;"ID": 215,<br>
+                    &nbsp;&nbsp;"Username": "denny",<br>
+                    &nbsp;&nbsp;"Città": "Genova"<br>
+                    }
+                </div>
+            </div>
+        </section>
+         <section class="content-block full-width" style="margin-top: 60px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 40px;">
+            <a href="pagina4.html" class="next-lesson-btn" style="background: linear-gradient(135deg, #e73c7e, #ee7752); padding: 15px 40px; border-radius: 50px; color: white; text-decoration: none; font-weight: bold; font-size: 1.1rem; box-shadow: 0 10px 20px rgba(231, 60, 126, 0.3);">
+                Prosegui con il quarto argomento:  Le Virtual LAN →
+            </a>
+        </section>
+    </main>
+
+    <footer style="padding: 50px; text-align: center; color: #64748b; font-size: 0.8rem; border-top: 1px solid rgba(255,255,255,0.05);">
+        <p> Comunicazione nel Web con HTTP | Cristian Germano</p>
+    </footer>
+</body>
+</html>

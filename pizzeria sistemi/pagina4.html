@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Le Virtual LAN (VLAN)</title>
+    <link rel="stylesheet" href="style_pagine.css">
+</head>
+<body>
+    <div class="top-bar"></div>
+    <nav style="display: flex; justify-content: space-between;">
+        <a href="index.html" class="back-link">← Dashboard</a>
+        <a href="pagina3.html" class="back-link">← Argomento Precedente</a>
+    </nav>
+
+    <header class="hero-section">
+        <div class="badge">4° Argomento</div>
+        <h1>Le Virtual LAN (VLAN)</h1>
+        <div class="tech-card" style="max-width: 800px; margin: 30px auto; text-align: left; background: rgba(35, 166, 213, 0.05);">
+            <p style="color: #cbd5e1; line-height: 1.8; margin: 0;">
+                Oltre i limiti fisici: scopri come segmentare logicamente le reti locali utilizzando lo standard IEEE 802.1Q per ottimizzare sicurezza, prestazioni e scalabilità, gestendo il traffico broadcast in domini isolati.
+            </p>
+        </div>
+    </header>
+
+    <main>
+        <section class="content-block">
+            <div class="text-content">
+                <div class="icon-box">🏗️</div>
+                <h2>Cos'è una VLAN?</h2>
+                <p>
+                    Una <strong>Virtual LAN (VLAN)</strong> è una rete locale segmentata logicamente a livello 2 (Data Link) della pila ISO/OSI. Grazie allo standard <strong>IEEE 802.1Q</strong>, è possibile definire più reti distinte che condividono la stessa infrastruttura fisica, come switch e cablaggi.
+                </p>
+                <p>
+                    In una configurazione standard, ogni VLAN rappresenta un <strong>dominio di broadcast isolato</strong>: i pacchetti inviati in broadcast da un host rimangono confinati all'interno della propria VLAN, migliorando le prestazioni e la sicurezza.
+                </p>
+            </div>
+            <div class="text-content">
+                <h2 style="color: #23d5ab;">Vantaggi Principali</h2>
+                <div class="tech-card" style="border-color: #23d5ab;">
+                    <ul style="font-size: 0.9rem; margin: 0; padding-left: 20px;">
+                        <li><strong>Economicità:</strong> Riduce la necessità di acquistare switch fisici separati.</li>
+                        <li><strong>Scalabilità:</strong> Spostamento utenti tra sottoreti via software, senza cambiare cavi.</li>
+                        <li><strong>Sicurezza:</strong> Isolamento dei dati sensibili (es. Amministrazione vs Guest).</li>
+                        <li><strong>Performance:</strong> Riduzione del traffico broadcast non necessario.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        
+
+        <section class="content-block full-width">
+            <h2>Lo Standard IEEE 802.1Q e il Tagging</h2>
+            <p>Per identificare a quale VLAN appartiene un frame mentre viaggia tra gli switch, viene inserito un "tag" di 4 byte tra l'indirizzo MAC sorgente e il campo EtherType.</p>
+            
+            <div class="tech-card" style="margin-top: 30px; text-align: left;">
+                <h4 style="color: #23a6d5; margin-bottom: 15px;">Struttura del Tag (4 Byte):</h4>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+                    <div>
+                        <strong style="color: #f1f5f9;">TPI (Tag Protocol ID):</strong><br>
+                        <span style="font-size: 0.85rem; color: #94a3b8;">2 byte impostati su 0x8100 per indicare che il frame è taggato 802.1Q.</span>
+                    </div>
+                    <div>
+                        <strong style="color: #f1f5f9;">User Priority:</strong><br>
+                        <span style="font-size: 0.85rem; color: #94a3b8;">3 bit per la Qualità del Servizio (QoS) e gestione delle priorità.</span>
+                    </div>
+                    <div>
+                        <strong style="color: #f1f5f9;">CFI:</strong><br>
+                        <span style="font-size: 0.85rem; color: #94a3b8;">1 bit per la compatibilità con reti Token Ring.</span>
+                    </div>
+                    <div>
+                        <strong style="color: #f1f5f9;">VID (VLAN ID):</strong><br>
+                        <span style="font-size: 0.85rem; color: #94a3b8;">12 bit per l'identificativo. Permette fino a 4094 VLAN utilizzabili.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        
+
+        <section class="content-block">
+            <div class="text-content">
+                <div class="icon-box" style="background: linear-gradient(135deg, #23a6d5, #23d5ab);">🔌</div>
+                <h2>Tipologie di Porte e Link</h2>
+                <p>Gli switch gestiscono il traffico in base alla configurazione delle interfacce:</p>
+                <ul class="step-list">
+                    <li class="step-item">
+                        <div class="step-number">1</div>
+                        <div><strong>Access Port (Untagged):</strong> Per connettere dispositivi finali (PC). Il traffico esce senza tag.</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">2</div>
+                        <div><strong>Trunk Port (Tagged):</strong> Collega switch tra loro. Trasporta più VLAN mantenendo i tag.</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">3</div>
+                        <div><strong>Hybrid Port:</strong> Gestisce traffico taggato e non simultaneamente (es. PC + Telefono VoIP).</div>
+                    </li>
+                </ul>
+            </div>
+            <div class="image-box">
+                <div class="tech-card" style="border-left: 4px solid #e73c7e;">
+                    <h4 style="color: #e73c7e;">Metodi di Assegnazione</h4>
+                    <table style="font-size: 0.85rem;">
+                        <thead>
+                            <tr>
+                                <th>Metodo</th>
+                                <th>Descrizione</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Statico</strong></td>
+                                <td>Basato sul numero di porta fisica (Port-based).</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Dinamico</strong></td>
+                                <td>Basato sul MAC Address del dispositivo.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Protocol</strong></td>
+                                <td>In base al protocollo di rete (IP, IPX).</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-block full-width">
+            <h2>Logica di Funzionamento: Ingress, Forwarding ed Egress</h2>
+            <p>Lo switch opera seguendo tre fasi logiche fondamentali per la manipolazione dei frame:</p>
+            
+            <div class="comparison-container">
+                <div class="tech-card" style="flex: 1; min-width: 250px;">
+                    <h4 style="color: #23a6d5;">1. Ingress (Ingresso)</h4>
+                    <p style="font-size: 0.85rem; color: #94a3b8;">Lo switch identifica la VLAN. Se il frame è "untagged", gli assegna internamente la PVID della porta.</p>
+                </div>
+                <div class="tech-card" style="flex: 1; min-width: 250px;">
+                    <h4 style="color: #23d5ab;">2. Forwarding (Inoltro)</h4>
+                    <p style="font-size: 0.85rem; color: #94a3b8;">Cerca il MAC di destinazione solo nella tabella MAC associata a quel VID specifico.</p>
+                </div>
+                <div class="tech-card" style="flex: 1; min-width: 250px;">
+                    <h4 style="color: #e73c7e;">3. Egress (Uscita)</h4>
+                    <p style="font-size: 0.85rem; color: #94a3b8;">Decide se rimuovere il tag (per porte Access) o mantenerlo (per porte Trunk).</p>
+                </div>
+            </div>
+        </section>
+
+        
+
+        <section class="content-block">
+            <div class="text-content">
+                <div class="icon-box" style="background: linear-gradient(135deg, #ee7752, #e73c7e);">🛡️</div>
+                <h2>Considerazioni sulla Sicurezza</h2>
+                <p>
+                    Sebbene le VLAN isolino il traffico, non sono impenetrabili. Esistono tecniche di attacco come il <strong>VLAN Hopping</strong>, dove un attaccante tenta di inviare pacchetti a VLAN a cui non appartiene sfruttando configurazioni errate dei trunk.
+                </p>
+                <div class="tech-card" style="background: rgba(238, 119, 82, 0.1); border-color: #ee7752; margin-top: 20px;">
+                    <p style="font-size: 0.9rem; margin: 0;">
+                        <strong>Nota Bene:</strong> L'uso delle VLAN non sostituisce un Firewall. Per isolare zone critiche (come una DMZ), è sempre necessario il filtraggio a livello 3/4 tramite router con ACL o Firewall dedicati.
+                    </p>
+                </div>
+            </div>
+            <div class="image-box">
+                <div class="tech-card">
+                    <h4 style="color: #23d5ab;">Riassunto Tecnico</h4>
+                    <p style="font-size: 0.85rem; color: #94a3b8;">
+                        Le VLAN trasformano un'infrastruttura rigida in una rete dinamica. Lo standard 802.1Q è il "linguaggio" che permette agli apparati di diversi vendor di comunicare l'appartenenza dei dati a una specifica rete virtuale.
+                    </p>
+                </div>
+            </div>
+        </section>
+         <section class="content-block full-width" style="margin-top: 60px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 40px;">
+            <a href="pagina5.html" class="next-lesson-btn" style="background: linear-gradient(135deg, #e73c7e, #ee7752); padding: 15px 40px; border-radius: 50px; color: white; text-decoration: none; font-weight: bold; font-size: 1.1rem; box-shadow: 0 10px 20px rgba(231, 60, 126, 0.3);">
+                Prosegui con il quinto argomento:  Coud computing →
+            </a>
+        </section>
+    </main>
+
+    <footer style="padding: 50px; text-align: center; color: #64748b; font-size: 0.8rem; border-top: 1px solid rgba(255,255,255,0.05);">
+        <p>Virtual LAN | Cristian Germano</p>
+    </footer>
+</body>
+</html>

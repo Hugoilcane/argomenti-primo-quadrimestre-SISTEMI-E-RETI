@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title> Il Cloud Computing </title>
+    <link rel="stylesheet" href="style_pagine.css">
+</head>
+<body>
+    <div class="top-bar"></div>
+    <nav style="display: flex; justify-content: space-between;">
+        <a href="index.html" class="back-link">← Dashboard</a>
+    </nav>
+
+    <header class="hero-section">
+        <div class="badge">5° Argomento</div>
+        <h1>Il Cloud Computing</h1>
+        <div class="tech-card" style="max-width: 800px; margin: 30px auto; text-align: left; background: rgba(35, 166, 213, 0.05);">
+            <p style="color: #cbd5e1; line-height: 1.8; margin: 0;">
+                Il cloud computing è un modello di erogazione di risorse informatiche che consente l’accesso a una vasta gamma di servizi attraverso Internet. In questa pagina esploreremo i modelli tradizionali (IaaS, PaaS, SaaS), i concetti di deployment e le architetture moderne come il Serverless, i Microservizi e l'Edge Computing.
+            </p>
+        </div>
+    </header>
+
+    <main>
+        <section class="content-block full-width">
+            <h2>Cos'è la "Nuvola"? Le Caratteristiche Principali</h2>
+            <p style="color: #94a3b8; max-width: 900px; margin: 0 auto 30px auto;">
+                Il termine "cloud" indica un ambiente astratto e virtualizzato. L'utente accede ai servizi senza preoccuparsi di come funziona o di dove si trovano fisicamente i server (i tradizionali server fisici costosi e difficili da gestire). Tutto viene trasformato in servizi on-demand.
+ 
+        <br><br>   Le caratteristiche principali del cloud computing possono essere sintetizzate in:
+            </p>
+            <div class="fallacies-grid">
+                <div class="tech-card" style="border-top: 4px solid #ee7752;">
+                    <h4 style="color: #ee7752;">On-Demand & Pay-As-You-Go</h4>
+                    <p style="font-size: 0.85rem;">Accesso autonomo alle risorse senza interazione diretta con il fornitore. Si paga solo per le risorse effettivamente utilizzate, garantendo flessibilità economica.</p>
+                </div>
+                <div class="tech-card" style="border-top: 4px solid #e73c7e;">
+                    <h4 style="color: #e73c7e;">Broad Network Access</h4>
+                    <p style="font-size: 0.85rem;">Risorse accessibili via Internet attraverso qualsiasi dispositivo (computer, smartphone, tablet), garantendo elevata flessibilità e mobilità.</p>
+                </div>
+                <div class="tech-card" style="border-top: 4px solid #23a6d5;">
+                    <h4 style="color: #23a6d5;">Resource Pooling (Multi-Tenant)</h4>
+                    <p style="font-size: 0.85rem;">Più utenti ("tenant") condividono le stesse risorse fisiche aggregate tramite virtualizzazione, pur mantenendo separati e sicuri i propri dati.</p>
+                </div>
+                <div class="tech-card" style="border-top: 4px solid #23d5ab;">
+                    <h4 style="color: #23d5ab;">Elasticità</h4>
+                    <p style="font-size: 0.85rem;">Possibilità di scalare le risorse verso l'alto (scale-up) o verso il basso (scale-down) in modo rapido e automatico, in base al reale carico di lavoro.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-block">
+            <div class="text-content">
+                <div class="icon-box" style="background: linear-gradient(135deg, #23a6d5, #23d5ab);">⚙️</div>
+                <h2>I Modelli di Servizio Cloud</h2>
+                <p>La virtualizzazione (tramite hypervisor) è il pilastro del cloud. I servizi si dividono in tre categorie principali in base al livello di controllo e responsabilità dell'utente.</p>
+                
+                <div class="protocol-card" style="border-left-color: #23a6d5;">
+                    <strong style="color: #23a6d5; font-size: 1.2rem;">1. IaaS (Infrastructure as a Service)</strong>
+                    <p style="font-size: 0.9rem; margin-top: 10px;">
+                        Fornisce un’infrastruttura virtualizzata (server, storage, rete). È come affittare un data center. Gli utenti hanno il controllo totale sul sistema operativo e sulle applicazioni.
+                    </p>
+                    <div class="extra-info" style="border-color: #23a6d5; background: rgba(35, 166, 213, 0.1);">
+                        <strong>Deployment complesso:</strong> L'utente deve configurare l'ambiente, installare middleware (server web, DB) e gestire la sicurezza. Es: Amazon EC2. Offre la massima personalizzazione.
+                    </div>
+                </div>
+
+                <div class="protocol-card" style="border-left-color: #e73c7e;">
+                    <strong style="color: #e73c7e; font-size: 1.2rem;">2. PaaS (Platform as a Service)</strong>
+                    <p style="font-size: 0.9rem; margin-top: 10px;">
+                        Fornisce un ambiente completo per lo sviluppo e la gestione. Il provider gestisce l'infrastruttura sottostante (OS, middleware), mentre lo sviluppatore si concentra solo sul codice.
+                    </p>
+                    <div class="extra-info" style="border-color: #e73c7e; background: rgba(231, 60, 126, 0.1);">
+                        <strong>Deployment facilitato:</strong> Ideale per il deployment continuo in ambienti <strong>DevOps</strong>. Spesso include funzionalità automatiche come il <em>Load Balancing</em>. Es: Google App Engine.
+                    </div>
+                </div>
+
+                <div class="protocol-card" style="border-left-color: #23d5ab;">
+                    <strong style="color: #23d5ab; font-size: 1.2rem;">3. SaaS (Software as a Service)</strong>
+                    <p style="font-size: 0.9rem; margin-top: 10px;">
+                        Fornisce applicazioni complete e pronte all’uso via Internet. Nessuna gestione dell'infrastruttura o sviluppo. Es: Google Workspace, Gmail, Microsoft 365.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="text-content">
+                <div class="icon-box" style="background: linear-gradient(135deg, #e73c7e, #ee7752);">🚀</div>
+                <h2>Oltre i Modelli Tradizionali</h2>
+                
+                <div class="tech-card" style="border-color: #e73c7e; margin-bottom: 20px;">
+                    <h3 style="color: #e73c7e; margin-top: 0;">Serverless Computing (FaaS)</h3>
+                    <p style="font-size: 0.85rem; color: #cbd5e1;">Evoluzione del PaaS. Lo sviluppatore scrive solo singole "funzioni" di codice eseguite in risposta a eventi. I server esistono, ma sono 100% invisibili. Si paga al millisecondo (es. AWS Lambda).</p>
+                </div>
+
+                <div class="tech-card" style="border-color: #ee7752;">
+                    <h3 style="color: #ee7752; margin-top: 0;">Architetture Cloud-Native</h3>
+                    <ul style="font-size: 0.85rem; color: #cbd5e1; text-align: left; padding-left: 15px;">
+                        <li><strong>Microservizi:</strong> App divise in piccoli componenti indipendenti.</li>
+                        <li><strong>Container (es. Docker):</strong> Pacchetti software completi di librerie, identici su ogni ambiente.</li>
+                        <li><strong>Orchestrazione (es. Kubernetes):</strong> Gestione automatizzata di migliaia di container.</li>
+                    </ul>
+                </div>
+
+                <div class="tech-card" style="border-color: #23a6d5; margin-top: 20px;">
+                    <h3 style="color: #23a6d5; margin-top: 0;">Edge Computing & Multi-Cloud</h3>
+                    <p style="font-size: 0.85rem; color: #cbd5e1;">L'<strong>Edge Computing</strong> elabora i dati "ai margini" della rete, vicini alla fonte (es. IoT, auto a guida autonoma) per azzerare la latenza. Il <strong>Multi-Cloud</strong> evita il <em>vendor lock-in</em> combinando i migliori servizi di provider diversi.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-block full-width">
+            <h2>Sicurezza e Sostenibilità nel Cloud</h2>
+            <p style="color: #94a3b8; max-width: 800px; margin: 0 auto;">Un errore comune è pensare che nel cloud la sicurezza sia un problema esclusivo del provider. Si applica invece il <strong>Modello di Responsabilità Condivisa</strong>: il provider garantisce la sicurezza <em>del</em> cloud, l'utente <em>nel</em> cloud.</p>
+            
+            <table style="margin-top: 40px;">
+                <thead>
+                    <tr>
+                        <th>Modello</th>
+                        <th>Responsabilità del Provider Cloud</th>
+                        <th>Responsabilità dell'Utente / Azienda</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>IaaS</strong></td>
+                        <td>Sicurezza fisica dei server, rete hardware, storage nei data center.</td>
+                        <td>Sistema operativo, firewall, aggiornamenti, protezione dei dati.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>PaaS</strong></td>
+                        <td>Infrastruttura fisica + Sistema operativo e framework di sviluppo.</td>
+                        <td>Codice dell'applicazione, gestione degli accessi (IAM) e dati.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>SaaS</strong></td>
+                        <td>Infrastruttura, piattaforma, sicurezza e aggiornamento dell'app stessa.</td>
+                        <td>Gestione degli account utente, permessi e protezione dei dati inseriti.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="comparison-container" style="justify-content: center; margin-top: 40px;">
+                <div class="tech-card" style="border-left: 4px solid #23d5ab; max-width: 600px;">
+                    <h3 style="color: #23d5ab; margin-top: 0;">🍃 Green Cloud Computing</h3>
+                    <p style="font-size: 0.85rem; color: #cbd5e1;">
+                        I data center consumano enormi quantità di energia. Oggi si punta all'efficienza tramite:
+                        <br>• Utilizzo di <strong>energie rinnovabili</strong>.
+                        <br>• Sistemi di <strong>raffreddamento avanzati</strong> (es. immersione nei liquidi o data center sottomarini).
+                        <br>• Ottimizzazione degli algoritmi per limitare gli sprechi di calcolo.
+                    </p>
+                </div>
+            </div>
+            
+        </section>
+        
+        <section class="content-block full-width" style="margin-top: 60px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 40px;">
+            <a href="index.html" class="next-lesson-btn" style="background: linear-gradient(135deg, #23a6d5, #23d5ab); padding: 15px 40px; border-radius: 50px; color: white; text-decoration: none; font-weight: bold; font-size: 1.1rem; box-shadow: 0 10px 20px rgba(35, 213, 171, 0.3);">
+                Torna alla Dashboard →
+            </a>
+        </section>
+
+    </main>
+
+    <footer style="padding: 50px; text-align: center; color: #64748b; font-size: 0.8rem; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 40px;">
+        <p>Il Cloud Computing | Cristian Germano</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,211 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    /* MODIFICA: Sfondo scuro come styles_pagine.css invece del gradiente luminoso */
+    background-color: #0f172a; 
+    color: #f1f5f9; /* Testo chiaro */
+    
+    overflow: hidden;
+}
+
+/* Nota: Ho rimosso l'animazione del background perché su un colore solido non serve,
+   ma ho mantenuto la struttura intatta come richiesto. */
+
+.hero-container {
+    text-align: center;
+    color: #f1f5f9;
+}
+
+h1 { 
+    font-size: 3.5rem; 
+    margin-bottom: 0; 
+    
+    /* MODIFICA: Applichiamo i colori vivaci SOLO al testo */
+    background: linear-gradient(90deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% auto;
+    animation: textShine 5s ease infinite; /* Nuova piccola animazione solo per il testo */
+}
+
+/* Aggiungo questa animazione per mantenere la vivacità sul testo */
+@keyframes textShine {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.subtitle { 
+    font-size: 1.2rem; 
+    opacity: 0.8; /* Leggermente meno opaco per eleganza */
+    margin-bottom: 30px; 
+    color: #94a3b8; /* Grigio tecnico */
+}
+
+ul { list-style: none; padding: 0; }
+li { margin: 20px 0; }
+
+.zoom-link {
+    display: inline-block;
+    padding: 15px 0px;
+    width: 350px;
+    
+    /* MODIFICA: Sfondo pulsante adattato al tema scuro */
+    background: rgba(30, 41, 59, 0.6); /* Blu scuro semitrasparente */
+    color: #f1f5f9;
+    
+    text-decoration: none;
+    border-radius: 50px;
+    
+    /* MODIFICA: Bordo sottile che richiama lo stile tech */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    
+    backdrop-filter: blur(10px);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.zoom-link:hover {
+    transform: scale(1.2);
+    
+    /* MODIFICA: Hover che si illumina con uno dei colori del tema */
+    background: #23a6d5; 
+    color: #ffffff;
+    border-color: #23a6d5;
+    box-shadow: 0 0 20px rgba(35, 166, 213, 0.4); /* Effetto Glow */
+}
+/* --- STILE BOX RECENSIONI --- */
+.review-box {
+    position: fixed; /* La fissa rispetto alla finestra del browser */
+    bottom: 20px;
+    right: 20px;
+    background: rgba(30, 41, 59, 0.7); /* Sfondo scuro semitrasparente */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px); /* Effetto vetro */
+    padding: 20px;
+    border-radius: 15px;
+    width: 260px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 1000;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+/* Effetto hover sull'intera box */
+.review-box:hover {
+    border-color: #23a6d5;
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(35, 166, 213, 0.2);
+}
+
+.review-box h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: #23d5ab; /* Colore in tema col sito */
+}
+
+.review-box textarea {
+    width: 100%;
+    height: 80px;
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: #f1f5f9;
+    padding: 10px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.85rem;
+    resize: none; /* Impedisce di ridimensionare la text-area sfasando il layout */
+    box-sizing: border-box; 
+    transition: border-color 0.3s;
+}
+
+/* Effetto quando si clicca per scrivere */
+.review-box textarea:focus {
+    outline: none;
+    border-color: #e73c7e;
+}
+
+.review-box textarea::placeholder {
+    color: #64748b;
+}
+
+.review-box button {
+    background: linear-gradient(90deg, #23a6d5, #23d5ab);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.review-box button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(35, 213, 171, 0.4);
+}
+/* --- STILE BOX CONTATTI --- */
+.contact-box {
+    position: fixed; /* La fissa rispetto alla finestra */
+    bottom: 20px;
+    left: 20px;      /* Posizionata a sinistra */
+    background: rgba(30, 41, 59, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    border-radius: 15px;
+    min-width: 200px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 1000;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+/* Effetto hover sull'intera box (usiamo un altro colore del tuo tema per variare) */
+.contact-box:hover {
+    border-color: #e73c7e;
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(231, 60, 126, 0.2);
+}
+
+.contact-box h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: #ee7752; /* Colore aranciato del tuo gradiente */
+}
+
+.contact-desc {
+    margin: 0 0 5px 0;
+    font-size: 0.8rem;
+    color: #94a3b8;
+}
+
+/* Stile per i link dei contatti */
+.contact-link {
+    color: #f1f5f9;
+    text-decoration: none;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    padding: 5px 0;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+/* Effetto interattivo quando passi il mouse sui link */
+.contact-link:hover {
+    color: #23a6d5; /* Azzurro al passaggio del mouse */
+    transform: translateX(5px); /* Piccolo scatto verso destra molto tech */
+}

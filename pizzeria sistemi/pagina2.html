@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Email, DNS e Telnet</title>
+    <link rel="stylesheet" href="style_pagine.css">
+    <style>
+        /* Stili specifici per tabelle e liste di negoziazione */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: rgba(30, 41, 59, 0.4);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        th {
+            background: rgba(231, 60, 126, 0.2);
+            color: #e73c7e;
+        }
+        .negoziazione-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            font-family: monospace;
+        }
+        .cmd { color: #23d5ab; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="top-bar"></div>
+    <nav style="display: flex; justify-content: space-between;">
+        <a href="index.html" class="back-link">← Dashboard</a>
+        <a href="pagina1.html" class="back-link">← Argomento Precedente</a>
+    </nav>
+
+    <header class="hero-section">
+        <div class="badge">2° Argomento</div>
+        <h1>Email, DNS e Telnet</h1>
+        <p style="color: #94a3b8; max-width: 800px; margin: 20px auto;">
+            Approfondimento sui servizi pilastro di Internet: la gestione dei messaggi, la risoluzione dei nomi e il controllo remoto degli host.
+        </p>
+    </header>
+
+    <main>
+        <section class="content-block">
+            <div class="text-content">
+                <div class="icon-box">📧</div>
+                <h2>Il Successo dell'Email</h2>
+                <p>L'Electronic Mail è l'applicazione più utilizzata in rete. Si basa su indirizzi univoci nella forma <strong>nomeutente@dominio</strong>. Il simbolo @ (at), introdotto nel 1972 in ARPANET, indica la posizione "presso" un server.</p>
+                
+                <div class="tech-card" style="margin-top: 20px; border-left: 4px solid #ee7752;">
+                    <h4 style="color: #ee7752;">Il fenomeno dello SPAM</h4>
+                    <p style="font-size: 0.85rem;">Termine derivato da "Spiced Ham" (carne in scatola di bassa qualità), indica messaggi indesiderati inviati massivamente a costo quasi nullo per finalità pubblicitarie.</p>
+                </div>
+            </div>
+            <div class="image-box">
+                <div class="tech-card">
+                    <h3>Struttura Indirizzo</h3>
+                    <p><span class="cmd">nomeutente</span>: identificativo univoco nel dominio.</p>
+                    <p><span class="cmd">dominio</span>: provider (es. gmail.com) o indirizzo IP.</p>
+                    <p><em>Nota: Un indirizzo non è associato a una persona, ma a una casella postale (mailbox).</em></p>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-block full-width">
+            <h2>Modalità di Accesso alla Posta</h2>
+            <div class="tech-card">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Caratteristica</th>
+                            <th>WEB MAIL (es. Gmail, Outlook.com)</th>
+                            <th>POP MAIL (es. Thunderbird, Mail)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Costo</strong></td>
+                            <td>Generalmente Gratuita</td>
+                            <td>Spesso a pagamento o aziendale</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Accessibilità</strong></td>
+                            <td>Da qualunque PC via Browser</td>
+                            <td>Solo dal PC con Client installato</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Sicurezza Password</strong></td>
+                            <td>Meno sicura (digitata ad ogni accesso)</td>
+                            <td>Più sicura (memorizzata localmente)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Allegati</strong></td>
+                            <td>Dimensioni limitate dal provider</td>
+                            <td>Dimensioni potenzialmente molto elevate</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Rischio Spam</strong></td>
+                            <td>Elevato</td>
+                            <td>Ridotto grazie ai filtri del client</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="content-block">
+            <div class="text-content">
+                <h2>MUA vs MTA: Il sistema postale</h2>
+                <p>La posta elettronica si basa su due sottosistemi fondamentali:</p>
+                <div class="fallacy-item">
+                    <strong>MUA (Mail User Agent):</strong> Il software client (interfaccia grafica) che permette di comporre e leggere messaggi. Usa <strong>SMTP</strong> per inviare.
+                </div>
+                <div class="fallacy-item" style="border-left-color: #23a6d5; margin-top: 10px;">
+                    <strong>MTA (Mail Transport Agent):</strong> Il mail server che funge da ponte. Smista le chiamate tra server e gestisce le code dei messaggi.
+                </div>
+            </div>
+            <div class="image-box">
+                
+            </div>
+        </section>
+
+        <section class="content-block full-width">
+            <h2>I Protocolli di Trasferimento</h2>
+            <div class="fallacies-grid">
+                <div class="tech-card">
+                    <h4 style="color: #23d5ab;">SMTP (Porta 25)</h4>
+                    <p style="font-size: 0.85rem;">Invia messaggi in formato <strong>RFC 822</strong> (Header + Body). Il Body supporta solo ASCII a 7-bit; per file multimediali si usa lo standard <strong>MIME</strong>.</p>
+                </div>
+                <div class="tech-card">
+                    <h4 style="color: #23a6d5;">POP3 (Porta 110)</h4>
+                    <p style="font-size: 0.85rem;">Scarica la posta dal server al PC. Fasi: <strong>Autorizzazione</strong> (Log-in), <strong>Transazione</strong> (Download), <strong>Aggiornamento</strong> (Cancellazione dal server).</p>
+                </div>
+                <div class="tech-card">
+                    <h4 style="color: #e73c7e;">IMAP4 (Porta 143)</h4>
+                    <p style="font-size: 0.85rem;">Più evoluto: permette di gestire cartelle sul server, scaricare solo porzioni di messaggi e l'accesso simultaneo da più dispositivi.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-block">
+            <div class="image-box">
+                
+            </div>
+            <div class="text-content">
+                <h2>DNS: La rubrica di Internet</h2>
+                <p>Traduce i nomi mnemonici (es. www.hoepli.it) in indirizzi IP numerici. È un <strong>database distribuito</strong> gerarchico.</p>
+                <ul style="font-size: 0.9rem; color: #94a3b8;">
+                    <li><strong>Root Server:</strong> 13 server mondiali (A-M) che gestiscono la radice.</li>
+                    <li><strong>TLD Server:</strong> Gestiscono i domini di alto livello (.com, .it, .edu).</li>
+                    <li><strong>Alias:</strong> Possibilità di assegnare più nomi simbolici allo stesso IP.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="content-block">
+            <div class="text-content">
+                <h2>Telnet e la Negoziazione NVT</h2>
+                <p>Protocollo (Porta 23) per sessioni remote bidirezionali. Utilizza il <strong>Network Virtual Terminal (NVT)</strong> per far comunicare sistemi operativi diversi.</p>
+                <div class="tech-card" style="font-size: 0.8rem;">
+                    <div class="negoziazione-grid">
+                        <div><span class="cmd">WILL</span>: Voglio usare...</div>
+                        <div><span class="cmd">DO</span>: Usa l'opzione...</div>
+                        <div><span class="cmd">WONT</span>: Non voglio usare...</div>
+                        <div><span class="cmd">DONT</span>: Non usare...</div>
+                    </div>
+                </div>
+            </div>
+            <div class="image-box">
+                <div class="tech-card" style="border-color: #23d5ab;">
+                    <h4 style="color: #23d5ab;">SSH (Secure Shell)</h4>
+                    <p style="font-size: 0.85rem;">Evoluzione sicura di Telnet. Crea un <strong>canale crittografato</strong> che protegge da intercettazioni (sniffing) e gestisce l'autenticazione a chiave pubblica.</p>
+                </div>
+            </div>
+        </section>
+                <section class="content-block full-width" style="margin-top: 60px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 40px;">
+            <a href="pagina3.html" class="next-lesson-btn" style="background: linear-gradient(135deg, #e73c7e, #ee7752); padding: 15px 40px; border-radius: 50px; color: white; text-decoration: none; font-weight: bold; font-size: 1.1rem; box-shadow: 0 10px 20px rgba(231, 60, 126, 0.3);">
+                Prosegui con il terzo argomento:  La comunicazione nel web con HTTP →
+            </a>
+        </section>
+    </main>
+
+    <footer style="padding: 50px; text-align: center; color: #64748b; font-size: 0.8rem; border-top: 1px solid rgba(255,255,255,0.05);">
+        <p>Email, DNS e Telnet | Cristian Germano</p>
+    </footer>
+</body>
+</html>

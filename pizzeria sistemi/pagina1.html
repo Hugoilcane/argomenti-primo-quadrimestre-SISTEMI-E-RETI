@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title> Il Livello delle Applicazioni </title>
+    <link rel="stylesheet" href="style_pagine.css">
+</head>
+<body>
+    <div class="top-bar"></div>
+    <nav style="display: flex; justify-content: space-between;">
+        <a href="index.html" class="back-link">← Dashboard</a>
+    </nav>
+
+    <header class="hero-section">
+        <div class="badge">1° Argomento</div>
+        <h1>Il Livello delle Applicazioni</h1>
+        <div class="tech-card" style="max-width: 800px; margin: 30px auto; text-align: left; background: rgba(35, 166, 213, 0.05);">
+            <p style="color: #cbd5e1; line-height: 1.8; margin: 0;">
+                Analisi estesa delle applicazioni di rete. Scopriremo non solo i concetti di Client-Server, P2P e WWW, ma approfondiremo le logiche di Load Balancing, i metodi HTTP, i meccanismi TCP/UDP e l'evoluzione dei protocolli di trasferimento sicuri.
+            </p>
+        </div>
+    </header>
+
+    <main>
+        <section class="content-block full-width">
+            <h2>Cos'è il Livello Applicazione?</h2>
+            <p style="color: #94a3b8; max-width: 900px; margin: 0 auto 30px auto;">
+                Nel modello ISO/OSI e TCP, il livello applicazione implementa i servizi di rete usati dall'utente finale. A differenza dei livelli inferiori, qui la flessibilità è massima, consentendo lo sviluppo continuo di nuovi protocolli (come HTTP, DNS, SMTP, FTP). <em>Approfondimento:</em> Nel modello TCP/IP, questo livello accorpa i tre livelli superiori del modello OSI (Applicazione, Presentazione e Sessione).
+            </p>
+            
+
+            <div class="comparison-container">
+                <div class="tech-card" style="flex: 1; border-top: 4px solid #23a6d5;">
+                    <h3 style="color: #23a6d5;">Processi e Socket</h3>
+                    <p>Un'applicazione di rete è un insieme di programmi eseguiti su più host. Per far comunicare due processi, si utilizza il <strong>Socket</strong>, formato da Indirizzo IP + Numero di Porta.</p>
+                    <div class="extra-info" style="border-color: #23a6d5; background: rgba(35, 166, 213, 0.1);">
+                        <strong style="color: #23a6d5;">La classificazione delle porte (IANA):</strong><br>
+                        • <strong>Well-Known (0-1023):</strong> Riservate a servizi standard. Es: HTTP (80), SMTP (25), DNS (53), HTTPS (443).<br>
+                        • <strong>Registered (1024-49151):</strong> Registrate per applicazioni specifiche (es. database).<br>
+                        • <strong>Dynamic/Private (49152-65535):</strong> Usate temporaneamente dal sistema operativo per i processi client in uscita (multiplexing).
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-block">
+            <div class="text-content">
+                <div class="icon-box" style="background: linear-gradient(135deg, #23a6d5, #23d5ab);">🏗️</div>
+                <h2>Architetture di Rete</h2>
+                
+                <div class="protocol-card" style="border-left-color: #23a6d5;">
+                    <strong style="color: #23a6d5; font-size: 1.2rem;">1. Client/Server Avanzato</strong>
+                    <p style="font-size: 0.9rem; margin-top: 10px;">
+                        Prevede un server sempre attivo (IP statico) che risponde ai client. I client non comunicano mai direttamente tra loro. 
+                    </p>
+                    <div class="extra-info" style="border-color: #23a6d5; background: rgba(35, 166, 213, 0.1);">
+                        <strong>Gestione della Congestione: Server Farm e Load Balancing</strong><br>
+                        Per evitare colli di bottiglia, colossi come Google o Amazon usano <em>server farm</em> (un hostname associato a più IP trasparenti al client). Questo avviene tramite <strong>Load Balancer</strong> (es. Nginx o HAProxy) che intercettano il traffico e lo smistano in base al carico (algoritmi Round-Robin o Least-Connections) ai vari server interni.
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-content">
+                <div class="protocol-card" style="border-left-color: #e73c7e;">
+                    <strong style="color: #e73c7e; font-size: 1.2rem;">2. Peer-to-Peer (P2P) Evoluto</strong>
+                    <p style="font-size: 0.9rem; margin-top: 10px;">
+                        I nodi (peer) dialogano direttamente basandosi sul principio "dare e ricevere" (condivisione di banda e file). Può essere decentralizzato (ogni nodo è "servent"), centralizzato (server indice come Napster) o ibrido (super-peer).
+                    </p>
+                    <div class="extra-info">
+                        <strong>Evoluzioni Moderne del P2P:</strong><br>
+                        • <strong>BitTorrent:</strong> Usa un tracker per trovare i peer. Il file viene diviso in piccoli "chunk". Un client scarica frammenti da nodi diversi contemporaneamente (<em>swarming</em>) ed è obbligato a caricare (<em>tit-for-tat</em>) per poter scaricare velocemente.<br>
+                        • <strong>Blockchain:</strong> Un'architettura P2P completamente decentralizzata dove i peer condividono un registro crittografico immutabile anziché semplici file.
+                    </div>
+                </div>
+            </div>
+            
+        </section>
+
+        <section class="content-block full-width">
+            <h2>Servizi dello Strato di Trasporto: TCP vs UDP</h2>
+            <p style="color: #94a3b8;">Le applicazioni scelgono il protocollo in base ai requisiti di Affidabilità, Throughput (Banda), Temporizzazione e Sicurezza.</p>
+            
+            <div class="comparison-container">
+                <div class="tech-card" style="flex: 1; border-color: #23d5ab;">
+                    <h3 style="color: #23d5ab;">TCP (Transmission Control Protocol)</h3>
+                    <p style="font-size: 0.85rem;">Utilizzato quando non è ammessa alcuna perdita di dati (FTP, HTTP, Email).</p>
+                    <ul style="font-size: 0.85rem; color: #cbd5e1; text-align: left;">
+                        <li><strong>Three-Way Handshake:</strong> Prima di inviare dati, client e server stabiliscono la connessione scambiandosi i pacchetti <em>SYN</em>, <em>SYN-ACK</em> e <em>ACK</em>.</li>
+                        <li><strong>Controllo di congestione:</strong> Regola la velocità di trasmissione per non saturare la rete.</li>
+                        <li><strong>Riordino:</strong> Assicura che i pacchetti arrivino nell'ordine corretto.</li>
+                    </ul>
+                </div>
+                <div class="tech-card" style="flex: 1; border-color: #ee7752;">
+                    <h3 style="color: #ee7752;">UDP (User Datagram Protocol)</h3>
+                    <p style="font-size: 0.85rem;">Protocollo senza connessione ("fire and forget"), ideale quando la velocità conta più della precisione (Streaming Audio/Video, Gaming).</p>
+                    <ul style="font-size: 0.85rem; color: #cbd5e1; text-align: left;">
+                        <li><strong>Leggerezza:</strong> Nessun handshake iniziale, inizia a trasmettere immediatamente.</li>
+                        <li><strong>Nessuna garanzia:</strong> I pacchetti possono arrivare disordinati o perdersi. Non esiste controllo di congestione.</li>
+                        <li><strong>Intestazione minima:</strong> Solo 8 byte rispetto ai 20 byte del TCP, riducendo l'overhead.</li>
+                    </ul>
+                </div>
+            </div>
+            
+        </section>
+
+        <section class="content-block">
+            <div class="image-box">
+                
+            </div>
+            <div class="text-content">
+                <h2>L'Architettura del WWW</h2>
+                <p>Il Web è un ipertesto multimediale distribuito basato su tre pilastri: Identificazione (URI/URL), Interazione (Protocolli) e Formato (HTML/Content-Type).</p>
+                
+                <div class="tech-card" style="border-left: 4px solid #e73c7e;">
+                    <h3 style="color: #e73c7e; margin-top: 0;">Il Cuore del Web: HTTP</h3>
+                    <p style="font-size: 0.85rem; color: #cbd5e1;">L'HTTP gestisce l'interazione tra browser e server web. È basato su comandi specifici (<strong>Metodi</strong>):</p>
+                    <ul style="font-size: 0.85rem; color: #94a3b8; padding-left: 15px;">
+                        <li><strong>GET:</strong> Richiede una risorsa (es. caricare una pagina).</li>
+                        <li><strong>POST:</strong> Invia dati al server (es. l'invio di un modulo o di una password).</li>
+                        <li><strong>PUT/PATCH:</strong> Aggiorna una risorsa esistente sul server.</li>
+                        <li><strong>DELETE:</strong> Elimina una risorsa.</li>
+                    </ul>
+                    <div class="extra-info">
+                        <strong>Protocollo Stateless:</strong> L'HTTP "non ha memoria". Il server non ricorda le richieste precedenti di un client. Per ovviare a ciò e mantenere l'utente "loggato", sono stati inventati i <strong>Cookie</strong> e le <strong>Sessioni</strong>.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-block full-width">
+            <h2>Il Protocollo FTP e l'Evoluzione della Sicurezza</h2>
+            <p style="color: #94a3b8; max-width: 800px; margin: 0 auto;">Il File Transfer Protocol (RFC 959) è un'architettura client/server pura che utilizza due connessioni TCP parallele.</p>
+            
+            <div class="fallacies-grid">
+                <div class="tech-card">
+                    <h4 style="color: #23a6d5;">I Due Canali FTP</h4>
+                    <p style="font-size: 0.85rem; text-align: left;">
+                        <strong>1. Connessione di Controllo (Porta 21):</strong> Per comandi, autenticazione e risposte (es. comando `RETR` o `QUIT`).<br>
+                        <strong>2. Connessione Dati (Porta 20):</strong> Usata unicamente per spostare i file reali.
+                    </p>
+                    <p style="font-size: 0.85rem; text-align: left; margin-top: 10px; color: #ee7752;">
+                        <em>Problema NAT/Firewall:</em> Nell'FTP "Attivo", il server cerca di connettersi al client sulla porta dati. Poiché i router moderni bloccano il traffico in entrata, si usa oggi la modalità <strong>FTP Passivo (PASV)</strong>, in cui è il client ad aprire entrambe le connessioni.
+                    </p>
+                </div>
+
+                <div class="tech-card" style="border-color: #e73c7e;">
+                    <h4 style="color: #e73c7e;">Dall'FTPS all'SFTP</h4>
+                    <p style="font-size: 0.85rem; text-align: left;">
+                        L'FTP in chiaro permette facilmente lo sniffing di password. È nato l'<strong>FTPS</strong> che aggiunge un layer crittografico SSL/TLS (RFC 4217).
+                    </p>
+                    <p style="font-size: 0.85rem; text-align: left; margin-top: 10px; color: #23d5ab;">
+                        <strong>Il nuovo standard (SFTP):</strong><br>
+                        Oggi l'approccio più usato a livello aziendale non è FTPS, ma <strong>SFTP (SSH File Transfer Protocol)</strong>. Non è un'estensione dell'FTP, ma un protocollo interamente nuovo che viaggia sulla singola porta <strong>22</strong> del protocollo SSH. Trasferisce dati e comandi in un unico canale, cifrato e fireweall-friendly.
+                    </p>
+                </div>
+            </div>
+            
+        </section>
+        
+        <section class="content-block full-width" style="margin-top: 60px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 40px;">
+            <a href="pagina2.html" class="next-lesson-btn" style="background: linear-gradient(135deg, #e73c7e, #ee7752); padding: 15px 40px; border-radius: 50px; color: white; text-decoration: none; font-weight: bold; font-size: 1.1rem; box-shadow: 0 10px 20px rgba(231, 60, 126, 0.3);">
+                Prosegui con il secondo argomento: Servizio Email →
+            </a>
+        </section>
+
+    </main>
+
+    <footer style="padding: 50px; text-align: center; color: #64748b; font-size: 0.8rem; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 40px;">
+        <p>Il Livello delle Applicazioni | Cristian Germano</p>
+    </footer>
+</body>
+</html>
